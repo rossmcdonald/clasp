@@ -1,0 +1,41 @@
+FROM ubuntu:trusty
+MAINTAINER Ross McDonald <mcdonaldrossc@gmail.com>
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install \
+    --no-install-recommends -y \
+    build-essential \
+    python-dev \
+    ca-certificates \
+    git \
+    m4 \
+    pkg-config \
+    clang-3.6 \
+    clang-3.6-dev \
+    llvm-3.6 \
+    llvm-3.6-dev \
+    libboost-dev \
+    libboost-filesystem-dev \
+    libboost-date-time-dev \
+    libboost-serialization-dev \
+    libboost-iostreams-dev \
+    libboost-program-options-dev \
+    libboost-random-dev \
+    libboost-regex-dev \
+    libboost-system-dev \
+    libgmp-dev \
+    autoconf \
+    autotools-dev \
+    automake \
+    libtool \
+    libexpat-dev \
+    libz-dev \
+    libncurses-dev \
+    libreadline-dev \
+    libedit-dev \
+    sbcl
+
+ENV PROJECT_DIR /root/clasp
+RUN mkdir -p $PROJECT_DIR
+WORKDIR $PROJECT_DIR
+VOLUME $PROJECT_DIR
+ENTRYPOINT [ "/root/clasp/entrypoint.sh" ]
